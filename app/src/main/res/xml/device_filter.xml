@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 0x2341 / Arduino -->
+    <!-- <usb-device vendor-id="9025" product-id="66" />
+     <usb-device
+             vendor-id="6790"
+             product-id="29987"/>-->
+    <usb-accessory
+            manufacturer="Circuits@Home, ltd."
+            model="USB Host Shield"
+            version="1.0"/>
+    <usb-accessory
+            manufacturer="Google, Inc."
+            model="DemoKit"
+            version="1.0"
+    />
+</resources>

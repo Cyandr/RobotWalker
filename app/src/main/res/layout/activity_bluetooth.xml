@@ -1,0 +1,89 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
+        tools:context=".BlueToothPage"
+>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+    >
+        <com.cyandr.robot.LGPSMap
+                android:id="@+id/lgpsmap"
+                android:layout_gravity="bottom"
+                android:layout_weight="0.6"
+                android:layout_width="match_parent"
+                android:background="@color/qq_color"
+                android:layout_height="0dp"/>
+        <LinearLayout
+                android:layout_margin="5dp"
+                android:gravity="bottom"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+        >
+
+            <com.cyandr.robot.RobotScrollView
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/ble_logscroll"
+                    android:layout_weight="1"
+            >
+                <TextView
+                        android:id="@+id/ble_logTxt"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                />
+            </com.cyandr.robot.RobotScrollView>
+            <EditText
+                    android:background="#00ff22"
+                    android:id="@+id/ble_inputbox"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+            />
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            >
+                <Button
+                        android:id="@+id/ble_connect"
+                        android:text="连接"
+                        android:layout_margin="5dp"
+                        android:background="@xml/btn3shape"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                />
+
+                <Button
+                        android:id="@+id/ble_send"
+                        android:background="@xml/btn3shape"
+                        android:layout_margin="5dp"
+                        android:text="发送"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
