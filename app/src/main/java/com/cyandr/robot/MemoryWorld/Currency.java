@@ -10,4 +10,6 @@ public class Currency {
         POUNDS
 
     }
+    float Value;
+
 }

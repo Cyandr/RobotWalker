@@ -6,10 +6,13 @@ public class Object {
     float Mass;
     float Volume;
     float Energy;
+
     enum CREATUEORNOT
     {
         LIVING,
         UNLIVING
     }
+
+
 
 }

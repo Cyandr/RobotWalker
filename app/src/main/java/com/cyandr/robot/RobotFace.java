@@ -24,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by cyandr on 2017/3/25.
@@ -97,20 +98,36 @@ public class RobotFace extends Activity {
         @Override
         public void onSuccess(String result) {
             if (result != null) {
-                try {
+                mHandler.obtainMessage(MSG_TEXT_JC_START,
+                        result).sendToTarget();
+               /* try {
 
-                    myapp.showText("jCseg成功啦"+result);
-                    JSONObject result_obj = new JSONObject(result);
-                    if (result_obj.has("data")) {
-                        JSONArray data = (JSONArray) result_obj.get("data");
-                        JSONObject words= (JSONObject) data.get("keywords");
+
+                    *//*JSONObject result_obj = new JSONObject(result);
+                    int code=result_obj.getInt("code");
+
+                    JSONObject obj=result_obj.getJSONObject("data");
+                    List<String> sb=new ArrayList<>();
+                    if (obj!=null)
+                    {
+                        JSONArray objs=obj.getJSONArray("keywords");
+                        for (int i=0;i<objs.length();i++)
+                            sb.add(objs.getString(i));
+                    }
+
+                    if (code==0) {
 
                         mHandler.obtainMessage(MSG_TEXT_JC_START,
-                                words.toString()).sendToTarget();
-                    }
+                                sb.toString()).sendToTarget();
+                    }else
+                    {
+
+                        mHandler.obtainMessage(MSG_TEXT_JC_START,
+                                "分词失败").sendToTarget();
+                    }*//*
                 } catch (JSONException e) {
                     mSpeechSpeaker.speak("呀,小辉，收到的都是什么鬼东西！");
-                }
+                }*/
             }
         }
 

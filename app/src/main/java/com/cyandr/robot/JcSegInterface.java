@@ -2,6 +2,7 @@ package com.cyandr.robot;
 
 
 import android.util.Log;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -11,47 +12,60 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class JcSegInterface {
 
-    private  String ServerAddress="101.6.95.54";
-    private String  ServerPort="10902";
+    private String ServerAddress = "101.6.95.54";
+    private String ServerPort = "10902";
+    private TokenCate m_TokenCate=TokenCate.TOKENS_ENTITY;
 
-    public class JcData
-    {
+    public class JcData {
         float took;
-        ArrayList<String> keywords=new ArrayList<>();
+        ArrayList<String> keywords = new ArrayList<>();
 
     }
-    public class JcStruct
-    {
+
+    public class JcStruct {
 
         int code;
         JcData data;
 
     }
 
-    private  String JsType(int n)
-    {
+    JcSegResult ParseResult(final String strline) {
+        JcSegResult jcSegResult = null;
+        switch (m_TokenCate) {
 
-        switch (n)
-        {
-            case 0:return  "keyphrase";
-            case 1: return "keywords";
-            case 2: return "sentences";
-            default:return "";
+
+            case KEYWORDS:
+                break;
+            case KEYPHRASE:
+                break;
+            case SENTENCE:
+                break;
+            case SUMMARY:
+                break;
+            case TOKENS_ENTITY:
+                try {
+                    jcSegResult = new ObjectMapper().readValue(strline,TokenEntity.class);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
+
+        return jcSegResult;
     }
 
-    private int PhraseNum=6;
-    private  boolean isfilterused=false;
-    private  String getfilter()
-    {
-        return  isfilterused?"true":"false";
+    private int PhraseNum = 6;
+    private boolean isfilterused = false;
+
+    private String getfilter() {
+        return isfilterused ? "true" : "false";
 
     }
+
     private HttpRequestListener httpRequestListener;
 
     private String setString(String str) {
@@ -64,26 +78,62 @@ public class JcSegInterface {
         return "";
     }
 
+    enum TokenCate {
+        KEYWORDS,
+        KEYPHRASE,
+        SENTENCE,
+        SUMMARY,
+        TOKENS_ENTITY
+    }
 
     //key是你自己注册得到的，当然你直接用我的也行
+    String GetLinkStr(final String string) {
+        String strUrl = "http://" + ServerAddress + ":" + ServerPort;
+        switch (m_TokenCate) {
 
+
+            case KEYWORDS:
+                strUrl += "/extractor/" +
+                        "keyphrase" +
+                        "?text=\"" + string +
+                        "\"&number=" + PhraseNum;
+                break;
+            case KEYPHRASE:
+                strUrl += "/extractor/" +
+                        "keywords" +
+                        "?text=\"" + string +
+                        "\"&number=" + PhraseNum;
+                break;
+            case SENTENCE:
+                strUrl += "/extractor/" +
+                        "sentence" +
+                        "?text=\"" + string +
+                        "\"&number=" + PhraseNum;
+                break;
+            case SUMMARY:
+                strUrl += "/extractor/" +
+                        "sentence" +
+                        "?text=\"" + string +
+                        "\"&length=" + PhraseNum;
+                break;
+            case TOKENS_ENTITY:
+
+                strUrl += "/tokenizer/" +
+                        "tokenizer_instance" +
+                        "?text=\"" + string;
+                break;
+        }
+        return strUrl;
+    }
 
     String getStr(final String string) {
         final String[] re = new String[1];
         final String data = setString(string);
-        final String strUrl =
-                "http://"+ServerAddress+":"+ServerPort+"/extractor/"+
-                        JsType(1)+
-                        "?text=\""+string+
-                        "\"&number="+PhraseNum+
-                        "&autofilter="+getfilter();
-        Log.d("Attention",strUrl);
+        final String strUrl = GetLinkStr(string);
+        Log.d("Attention", strUrl);
         new Thread(new Runnable() {
             @Override
             public void run() {
-
-
-
                 URL url = null;
                 try {
                     url = new URL(strUrl);
@@ -107,8 +157,8 @@ public class JcSegInterface {
                     //用ByteArrayOutputStream全部缓冲好后再一次转成String，不然再间隔的地方会出现乱码问题
 
                     String result = outStream.toString();
-
-                    httpRequestListener.onSuccess(result);
+                 JcSegResult res=   ParseResult(result);
+                    httpRequestListener.onSuccess(res.toString());
                 } catch (IOException e) {
                     httpRequestListener.onFail(e.hashCode(), e.toString());
                     e.printStackTrace();

@@ -1,20 +1,19 @@
 package com.cyandr.robot.MemoryWorld;
 
-public class People {
+public class People extends  Concept
+{
 
     String Relationship;
     String Name;
+    int Age;
 
 
-    enum GENDER
-    {
-
+    enum GENDER {
         MALE,
         FEMALE
     }
 
-    public class Info
-    {
+    public class Info {
 
         String telephoneNumber;
         Location address;

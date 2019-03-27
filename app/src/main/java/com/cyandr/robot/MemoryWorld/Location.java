@@ -2,7 +2,8 @@ package com.cyandr.robot.MemoryWorld;
 
 
 //位置
-public class Location {
+public class Location extends Concept
+{
 
 
 
@@ -12,6 +13,7 @@ public class Location {
         OUTSIDE
 
     }
+
     float Latitude;
     float Longtitude;
     String Location;
