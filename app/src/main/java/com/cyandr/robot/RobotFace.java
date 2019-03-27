@@ -19,6 +19,9 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.baidu.tts.client.SpeechSynthesizer;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -42,6 +45,7 @@ public class RobotFace extends Activity {
      */
     static final int MSG_WAKEING_UP_AWAITING = 15;
     private static final int MSG_SPEECH_START = 10;
+    private static final int MSG_TEXT_JC_START = 19;
     /**
      * 网络请求回调
      */
@@ -53,6 +57,7 @@ public class RobotFace extends Activity {
 
     private RobotApp myapp;
     private TuringInterface turingInterface;
+    private JcSegInterface jcSegInterface;
 
     private EditText mInput;
     private TextView mShowText;
@@ -77,6 +82,35 @@ public class RobotFace extends Activity {
                 //   } catch (JSONException e) {
                 //       mSpeechSpeaker.speak("呀,小辉，收到的都是什么鬼东西！");
                 //   }
+            }
+        }
+
+        @Override
+        public void onFail(int code, String error) {
+
+            myapp.showText("网络慢脑袋不灵了");
+
+        }
+    };
+    private HttpRequestListener myHttpConnectionListenerJcseg = new HttpRequestListener() {
+
+        @Override
+        public void onSuccess(String result) {
+            if (result != null) {
+                try {
+
+                    myapp.showText("jCseg成功啦"+result);
+                    JSONObject result_obj = new JSONObject(result);
+                    if (result_obj.has("data")) {
+                        JSONArray data = (JSONArray) result_obj.get("data");
+                        JSONObject words= (JSONObject) data.get("keywords");
+
+                        mHandler.obtainMessage(MSG_TEXT_JC_START,
+                                words.toString()).sendToTarget();
+                    }
+                } catch (JSONException e) {
+                    mSpeechSpeaker.speak("呀,小辉，收到的都是什么鬼东西！");
+                }
             }
         }
 
@@ -275,6 +309,9 @@ public class RobotFace extends Activity {
         turingInterface = new TuringInterface();
 
         turingInterface.setHttpRequestListener(myHttpConnectionListener);
+        jcSegInterface = new JcSegInterface();
+        jcSegInterface.setHttpRequestListener(myHttpConnectionListenerJcseg);
+
         mSpeechSpeaker.speak("你好啊，boss！");
 
 
@@ -352,8 +389,12 @@ public class RobotFace extends Activity {
     private void runCommand(String cmd) {
         if (cmd.contains("退出") || cmd.contains("停止")) {
             myapp.BeginAwaitingWakeUp();
-        } else
+        } else {
             turingInterface.getStr(cmd);
+          String str=  jcSegInterface.getStr(cmd);
+          scrollText(str);
+        }
+
 
     }
 
@@ -398,6 +439,9 @@ public class RobotFace extends Activity {
                 case MSG_WAKEUP_SUCCESS:
                     restartASR();
 
+                    break;
+                case MSG_TEXT_JC_START:
+                    scrollText("JcSeg：" + msg.obj);
                     break;
                 default:
 

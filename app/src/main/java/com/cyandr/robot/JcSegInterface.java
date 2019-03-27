@@ -1,6 +1,8 @@
 package com.cyandr.robot;
 
 
+import android.util.Log;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,9 +10,48 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
-class TuringInterface {
+public class JcSegInterface {
+
+    private  String ServerAddress="101.6.95.54";
+    private String  ServerPort="10902";
+
+    public class JcData
+    {
+        float took;
+        ArrayList<String> keywords=new ArrayList<>();
+
+    }
+    public class JcStruct
+    {
+
+        int code;
+        JcData data;
+
+    }
+
+    private  String JsType(int n)
+    {
+
+        switch (n)
+        {
+            case 0:return  "keyphrase";
+            case 1: return "keywords";
+            case 2: return "sentences";
+            default:return "";
+        }
+    }
+
+    private int PhraseNum=6;
+    private  boolean isfilterused=false;
+    private  String getfilter()
+    {
+        return  isfilterused?"true":"false";
+
+    }
     private HttpRequestListener httpRequestListener;
 
     private String setString(String str) {
@@ -27,17 +68,22 @@ class TuringInterface {
     //key是你自己注册得到的，当然你直接用我的也行
 
 
-    void getStr(final String string) {
-
+    String getStr(final String string) {
         final String[] re = new String[1];
         final String data = setString(string);
+        final String strUrl =
+                "http://"+ServerAddress+":"+ServerPort+"/extractor/"+
+                        JsType(1)+
+                        "?text=\""+string+
+                        "\"&number="+PhraseNum+
+                        "&autofilter="+getfilter();
+        Log.d("Attention",strUrl);
         new Thread(new Runnable() {
             @Override
             public void run() {
 
 
-                String strUrl =
-                        "http://www.tuling123.com/openapi/api?key=c1429dd01f8c4fdea62db08f3dbebd69&info=+" + data;
+
                 URL url = null;
                 try {
                     url = new URL(strUrl);
@@ -61,9 +107,7 @@ class TuringInterface {
                     //用ByteArrayOutputStream全部缓冲好后再一次转成String，不然再间隔的地方会出现乱码问题
 
                     String result = outStream.toString();
-                    //返回的JSON，弄成字符串后去掉头和尾就行
-                    result = result.substring(23, result.length() - 2);
-                    re[0] = result;
+
                     httpRequestListener.onSuccess(result);
                 } catch (IOException e) {
                     httpRequestListener.onFail(e.hashCode(), e.toString());
@@ -72,6 +116,8 @@ class TuringInterface {
             }
         }
         ).start();
+
+        return strUrl;
     }
 
     public void setHttpRequestListener(HttpRequestListener httpRequestListener) {
