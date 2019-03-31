@@ -5,6 +5,8 @@ public class People extends  Concept
 
     String Relationship;
     String Name;
+    String GivenName;
+
     int Age;
 
 
@@ -18,7 +20,7 @@ public class People extends  Concept
         String telephoneNumber;
         Location address;
         GENDER gender;
-
+        String Email;
 
     }
 

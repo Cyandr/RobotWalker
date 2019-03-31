@@ -18,7 +18,7 @@ public class JcSegInterface {
 
     private String ServerAddress = "101.6.95.54";
     private String ServerPort = "10902";
-    private TokenCate m_TokenCate=TokenCate.TOKENS_ENTITY;
+    private TokenCate m_TokenCate=TokenCate.KEYWORDS;
 
     public class JcData {
         float took;
@@ -94,13 +94,13 @@ public class JcSegInterface {
 
             case KEYWORDS:
                 strUrl += "/extractor/" +
-                        "keyphrase" +
+                        "keywords" +
                         "?text=\"" + string +
                         "\"&number=" + PhraseNum;
                 break;
             case KEYPHRASE:
                 strUrl += "/extractor/" +
-                        "keywords" +
+                        "keyphrase" +
                         "?text=\"" + string +
                         "\"&number=" + PhraseNum;
                 break;
@@ -120,7 +120,7 @@ public class JcSegInterface {
 
                 strUrl += "/tokenizer/" +
                         "tokenizer_instance" +
-                        "?text=\"" + string;
+                        "?text=\"" + string+"\"";
                 break;
         }
         return strUrl;
@@ -158,7 +158,10 @@ public class JcSegInterface {
 
                     String result = outStream.toString();
                  JcSegResult res=   ParseResult(result);
+                 if (res!=null)
                     httpRequestListener.onSuccess(res.toString());
+                 else
+                     httpRequestListener.onSuccess(result);
                 } catch (IOException e) {
                     httpRequestListener.onFail(e.hashCode(), e.toString());
                     e.printStackTrace();

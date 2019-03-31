@@ -19,8 +19,8 @@
             android:layout_marginBottom="12dp"
             android:id="@+id/btn_speak"
             android:layout_width="match_parent"
-            android:background="@xml/btn3shape"
-            android:layout_height="30dp"/>
+            android:text="语音输入"
+            android:layout_height="wrap_content"/>
 
     <com.cyandr.robot.RobotScrollView
             android:id="@+id/scroll_text"

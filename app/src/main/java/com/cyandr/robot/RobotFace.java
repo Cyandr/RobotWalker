@@ -52,7 +52,7 @@ public class RobotFace extends Activity {
      */
     private final int[] QuestionAnsered = {0, 0, 0};
     private SpeechSpeaker mSpeechSpeaker = null;
-    private MusicEnergy mMusicEnergy = null;
+    //private MusicEnergy mMusicEnergy = null;
 
     private BDASR mAsrListener;
 
@@ -148,7 +148,7 @@ public class RobotFace extends Activity {
         mSpeechSpeaker.release();
         mAsrListener.destroy();
 
-        mMusicEnergy.onClose();
+       // mMusicEnergy.onClose();
         super.onDestroy();
     }
 
@@ -174,7 +174,7 @@ public class RobotFace extends Activity {
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.robot_head);
         mHandler = new MyHandler();
-        mMusicEnergy = new MusicEnergy(this);
+       // mMusicEnergy = new MusicEnergy(this);
         myapp = (RobotApp) getApplication();
         myapp.setHandler(mHandler);
 
@@ -185,7 +185,7 @@ public class RobotFace extends Activity {
                 300);
         params.gravity = Gravity.TOP;
         params.topMargin = 100;
-        addContentView(mMusicEnergy, params);
+       // addContentView(mMusicEnergy, params);
 
         mInput = this.findViewById(R.id.input);
         mShowText = this.findViewById(R.id.show_text);
