@@ -1,27 +1,14 @@
 package com.cyandr.robot.MemoryWorld;
 
-public class People extends  Concept
-{
+import com.cyandr.robot.BaseModel;
+import org.apache.jena.vocabulary.VCARD;
 
-    String Relationship;
-    String Name;
-    String GivenName;
-
-    int Age;
+public class People extends BaseModel {
+    public People() {
 
 
-    enum GENDER {
-        MALE,
-        FEMALE
     }
 
-    public class Info {
-
-        String telephoneNumber;
-        Location address;
-        GENDER gender;
-        String Email;
-
-    }
+    VCARD PeopleCard = new VCARD();
 
 }

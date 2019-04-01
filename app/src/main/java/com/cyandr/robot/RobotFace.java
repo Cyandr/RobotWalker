@@ -19,17 +19,20 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.baidu.tts.client.SpeechSynthesizer;
+import com.cyandr.robot.MemoryWorld.*;
+import com.cyandr.robot.OntActivity.ConsumeActivity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.Object;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by cyandr on 2017/3/25.
  */
-public class RobotFace extends Activity {
+public class RobotFace extends Activity implements View.OnClickListener {
 
 
     /**
@@ -413,6 +416,23 @@ public class RobotFace extends Activity {
         }
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.btn_fusike:
+            {
+                People people=new People();
+
+                ConsumeActivity activity=new ConsumeActivity(new People(),new Movement(),new Currency(),new Location(),new Time(),new MemoryObject());
+
+                activity.generateRdfModel();
+            }
+                break;
+
+        }
     }
 
     class MyHandler extends Handler {

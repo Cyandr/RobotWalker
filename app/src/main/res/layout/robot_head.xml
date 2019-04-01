@@ -61,6 +61,16 @@
                 android:layout_marginRight="10dp"
                 android:layout_height="30dp"/>
         <Button
+                android:layout_weight="1"
+                android:text="fusike"
+
+                android:layout_marginBottom="2dp"
+                android:id="@+id/btn_fusike"
+                android:layout_width="match_parent"
+                android:background="@xml/btn3shape"
+                android:layout_marginRight="10dp"
+                android:layout_height="30dp"/>
+        <Button
                 android:text="aoa模式"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"

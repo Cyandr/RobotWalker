@@ -1,6 +1,9 @@
 package com.cyandr.robot.MemoryWorld;
 
-public class BaseSpace {
+import com.cyandr.robot.BaseModel;
+
+public class BaseSpace extends BaseModel
+{
 
 
     public   double X;

@@ -2,7 +2,10 @@ package com.cyandr.robot.OntActivity;
 
 
 import android.graphics.ColorSpace;
-import com.cyandr.robot.MemoryWorld.People;
+import com.cyandr.robot.BaseModel;
+import com.cyandr.robot.MemoryWorld.*;
+import com.cyandr.robot.MemoryWorld.Object;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.ResultSet;
@@ -18,14 +21,15 @@ import org.apache.jena.vocabulary.VCARD;
 import java.sql.Time;
 import java.util.function.Consumer;
 
-public class OntActivity {
+public class OntActivity extends BaseModel
+{
 
-    String time;
-    String space;
-    String people;
-    String object;
+    Time time;
+    Location space;
+    People people;
+    Object object;
 
-    String movement;
+    Movement movement;
     String state;
     Model model=null;
 
@@ -34,11 +38,6 @@ public class OntActivity {
     private static String fullName = "Xinhui Yan";
 
     void init(People people) {
-
-
-
-
-
         // some definitions
 
 
@@ -105,8 +104,5 @@ public class OntActivity {
                 e.printStackTrace();
             }
             System.out.println("Hello World!");
-
-
-        
     }
 }

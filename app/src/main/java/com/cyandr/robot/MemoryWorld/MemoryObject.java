@@ -1,6 +1,6 @@
 package com.cyandr.robot.MemoryWorld;
 
-public class Object {
+public class MemoryObject {
 
     String Name;
     float Mass;
