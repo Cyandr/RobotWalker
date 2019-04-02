@@ -13,7 +13,7 @@ import static com.cyandr.robot.RobotFace.*;
  */
 public class RobotApp extends Application {
 
-    private Handler myHandler = null;
+    private static Handler myHandler = null;
 
     public Handler getHandler() {
 
@@ -25,10 +25,10 @@ public class RobotApp extends Application {
         this.myHandler = handler;
     }
 
-    public void showText(String string) {
+    public static void showText(String string) {
 
         if (myHandler == null) {
-            Toast.makeText(this, "还未初始化！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(null, "还未初始化！", Toast.LENGTH_SHORT).show();
             return;
         }
         Message msg = Message.obtain();

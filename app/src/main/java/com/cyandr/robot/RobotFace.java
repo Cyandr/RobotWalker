@@ -409,9 +409,10 @@ public class RobotFace extends Activity implements View.OnClickListener {
             {
                 People people=new People();
 
-                ConsumeActivity activity=new ConsumeActivity(new People(),new Movement(),new Currency(),new Location(),new Time(),new MemoryObject());
+               // ConsumeActivity activity=new ConsumeActivity(new People(),new Movement(),new Currency(),new Location(),new Time(),new MemoryObject());
 
-                activity.generateRdfModel();
+              //  activity.generateRdfModel();
+                Main.main(null);
             }
                 break;
 
