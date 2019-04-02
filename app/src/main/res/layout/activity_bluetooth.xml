@@ -5,7 +5,7 @@
         android:layout_height="match_parent"
 
         android:orientation="vertical"
-        tools:context=".BlueToothPage"
+        tools:context=".hardware.BlueToothPage"
 >
 
 
@@ -14,7 +14,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
     >
-        <com.cyandr.robot.LGPSMap
+        <com.cyandr.robot.hardware.LGPSMap
                 android:id="@+id/lgpsmap"
                 android:layout_gravity="bottom"
                 android:layout_weight="0.6"

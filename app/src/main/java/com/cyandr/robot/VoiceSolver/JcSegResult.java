@@ -1,4 +1,4 @@
-package com.cyandr.robot;
+package com.cyandr.robot.VoiceSolver;
 
 public  class JcSegResult {
 

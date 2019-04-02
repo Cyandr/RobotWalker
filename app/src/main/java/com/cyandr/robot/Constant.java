@@ -35,4 +35,21 @@ public class Constant {
 
     public static final String VAD_SEARCH = "search";
     public static final String VAD_INPUT = "input";
+
+
+    /**
+     * 开始识别
+     */
+    static final int MSG_RECOGNIZE_RESULT = 11;
+    /**
+     * 开始识别
+     */
+    public static final int MSG_RECOGNIZE_START = 12;
+    public static final int MSG_WAKEUP_SUCCESS = 16;
+    /**
+     * 返回结果，开始说话
+     */
+    public static final int MSG_WAKEING_UP_AWAITING = 15;
+    public static final int MSG_SPEECH_START = 10;
+    public static final int MSG_TEXT_JC_START = 19;
 }

@@ -1,4 +1,4 @@
-package com.cyandr.robot;
+package com.cyandr.robot.VoiceSolver;
 
 import android.content.Context;
 import android.media.AudioManager;
@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.os.Message;
 import com.baidu.tts.auth.AuthInfo;
 import com.baidu.tts.client.*;
+import com.cyandr.robot.RobotApp;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,7 +15,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.cyandr.robot.RobotFace.MSG_RECOGNIZE_START;
+import static com.cyandr.robot.Constant.MSG_RECOGNIZE_START;
 
 /**
  * Created by xiaoh on 2017/5/1.
@@ -35,7 +36,7 @@ public class SpeechSpeaker implements SpeechSynthesizerListener {
     private String mSampleDirPath;
     private Context mContext;
 
-    SpeechSpeaker(Context context, RobotApp app) {
+    public SpeechSpeaker(Context context, RobotApp app) {
         mContext = context;
         myapp = app;
         setOfflineVoiceType(VOICE_DUXY);
@@ -229,38 +230,38 @@ public class SpeechSpeaker implements SpeechSynthesizerListener {
         myapp.showText(string);
     }
 
-    void setParam(String key, String value) {
+    public void setParam(String key, String value) {
 
         mSpeechSpeaker.setParam(key, value);
 
 
     }
 
-    void release() {
+    public void release() {
 
         mSpeechSpeaker.release();
 
     }
 
-    void speak(String string) {
+    public void speak(String string) {
 
 
         mSpeechSpeaker.speak(string);
 
     }
 
-    void pause() {
+    public void pause() {
 
 
         mSpeechSpeaker.pause();
     }
 
-    void resume() {
+    public void resume() {
         mSpeechSpeaker.resume();
 
     }
 
-    void stop() {
+    public void stop() {
 
         mSpeechSpeaker.stop();
     }

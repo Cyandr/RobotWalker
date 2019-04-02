@@ -1,4 +1,4 @@
-package com.cyandr.robot;
+package com.cyandr.robot.hardware;
 
 import android.content.Context;
 import android.graphics.*;
@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
-import com.cyandr.robot.LGPSolver.LGPSDesk;
+import com.cyandr.robot.hardware.LGPSolver.LGPSDesk;
 
 import java.util.ArrayList;
 import java.util.List;

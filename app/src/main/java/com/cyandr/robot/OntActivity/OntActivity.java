@@ -1,19 +1,18 @@
 package com.cyandr.robot.OntActivity;
 
 
-import android.graphics.ColorSpace;
 import com.cyandr.robot.BaseModel;
-import com.cyandr.robot.MemoryWorld.*;
-import com.cyandr.robot.MemoryWorld.Object;
-import com.fasterxml.jackson.databind.ser.Serializers;
+import com.cyandr.robot.MemoryWorld.Location;
+import com.cyandr.robot.MemoryWorld.Movement;
+import com.cyandr.robot.MemoryWorld.People;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.ResultSet;
-import org.apache.jena.query.ResultSetFormatter;
-import org.apache.jena.rdf.model.*;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdfconnection.RDFConnection;
 import org.apache.jena.rdfconnection.RDFConnectionRemote;
-import org.apache.jena.rdfconnection.RDFConnectionRemoteBuilder;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.vocabulary.VCARD;

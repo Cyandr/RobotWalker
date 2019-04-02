@@ -1,4 +1,4 @@
-package com.cyandr.robot;
+package com.cyandr.robot.hardware;
 
 /**
  * Created by cyandr on 2016/6/12 0012.
@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.IBinder;
+import com.cyandr.robot.RobotApp;
 
 public class StepService extends Service {
     public static Boolean flag = false;
@@ -26,11 +27,7 @@ public class StepService extends Service {
     public void onCreate() {
         super.onCreate();
         //这里开启了一个线程，因为后台服务也是在主线程中进行，这样可以安全点，防止主线程阻塞
-        new Thread(new Runnable() {
-            public void run() {
-                startStepDetector();
-            }
-        }).start();
+        new Thread(() -> startStepDetector()).start();
 
     }
 

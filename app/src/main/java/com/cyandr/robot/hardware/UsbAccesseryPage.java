@@ -1,4 +1,4 @@
-package com.cyandr.robot;
+package com.cyandr.robot.hardware;
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.widget.TextView;
+import com.cyandr.robot.R;
 
 import java.io.FileDescriptor;
 import java.io.FileInputStream;

@@ -1,7 +1,8 @@
-package com.cyandr.robot;
+package com.cyandr.robot.VoiceSolver;
 
 
 import android.util.Log;
+import com.cyandr.robot.HttpRequestListener;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.ByteArrayOutputStream;
@@ -48,7 +49,7 @@ public class JcSegInterface {
                 break;
             case TOKENS_ENTITY:
                 try {
-                    jcSegResult = new ObjectMapper().readValue(strline,TokenEntity.class);
+                    jcSegResult = new ObjectMapper().readValue(strline, TokenEntity.class);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -126,7 +127,7 @@ public class JcSegInterface {
         return strUrl;
     }
 
-    String getStr(final String string) {
+    public String getStr(final String string) {
         final String[] re = new String[1];
         final String data = setString(string);
         final String strUrl = GetLinkStr(string);

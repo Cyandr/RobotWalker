@@ -91,7 +91,7 @@ public class ConsumeActivity extends OntActivity {
         Individual instanceWhat = model.createIndividual(Prix, model.createClass(Prix + MemoryObject.class.toString()));
 
         model.add(instance,  RELS.get("object"), instanceWhat);
-
+        //model.addSubModel();
         //model.write();
         RDFConnection conn0 = RDFConnectionRemote.create()
                 .destination("http://101.6.95.54:19092/fuseki/ConsumeTest")

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cyandr.robot;
+package com.cyandr.robot.VoiceSolver;
 
 import android.media.audiofx.Visualizer;
 import android.util.Log;

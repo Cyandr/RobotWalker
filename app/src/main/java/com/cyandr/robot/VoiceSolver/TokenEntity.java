@@ -1,8 +1,10 @@
-package com.cyandr.robot;
+package com.cyandr.robot.VoiceSolver;
+
+import com.cyandr.robot.VoiceSolver.JcSegResult;
 
 import java.util.ArrayList;
 
-public class TokenEntity extends  JcSegResult
+public class TokenEntity extends JcSegResult
 {
 
 

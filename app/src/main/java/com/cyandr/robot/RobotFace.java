@@ -3,9 +3,7 @@ package com.cyandr.robot;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,13 +19,14 @@ import android.widget.TextView;
 import com.baidu.tts.client.SpeechSynthesizer;
 import com.cyandr.robot.MemoryWorld.*;
 import com.cyandr.robot.OntActivity.ConsumeActivity;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.cyandr.robot.VoiceSolver.BDASR;
+import com.cyandr.robot.VoiceSolver.JcSegInterface;
+import com.cyandr.robot.VoiceSolver.SpeechSpeaker;
+import com.cyandr.robot.VoiceSolver.TuringInterface;
 
-import java.lang.Object;
 import java.util.ArrayList;
-import java.util.List;
+
+import static com.cyandr.robot.Constant.*;
 
 /**
  * Created by cyandr on 2017/3/25.
@@ -35,21 +34,7 @@ import java.util.List;
 public class RobotFace extends Activity implements View.OnClickListener {
 
 
-    /**
-     * 开始识别
-     */
-    static final int MSG_RECOGNIZE_RESULT = 11;
-    /**
-     * 开始识别
-     */
-    static final int MSG_RECOGNIZE_START = 12;
-    static final int MSG_WAKEUP_SUCCESS = 16;
-    /**
-     * 返回结果，开始说话
-     */
-    static final int MSG_WAKEING_UP_AWAITING = 15;
-    private static final int MSG_SPEECH_START = 10;
-    private static final int MSG_TEXT_JC_START = 19;
+
     /**
      * 网络请求回调
      */
@@ -181,9 +166,7 @@ public class RobotFace extends Activity implements View.OnClickListener {
         myapp = (RobotApp) getApplication();
         myapp.setHandler(mHandler);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            initPermission();
-        }
+        initPermission();
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                 300);
         params.gravity = Gravity.TOP;
@@ -230,27 +213,24 @@ public class RobotFace extends Activity implements View.OnClickListener {
     private void InitUI() {
         final Button btn_speak = findViewById(R.id.btn_speak);
         btn_speak.setText("----");
-        btn_speak.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlphaAnimation alphaAnimation = new AlphaAnimation(.5f, 1.0f);
-                // alphaAnimation.setDuration(2000);
+        btn_speak.setOnClickListener(v -> {
+            AlphaAnimation alphaAnimation = new AlphaAnimation(.5f, 1.0f);
+            // alphaAnimation.setDuration(2000);
 
-                btn_speak.setAnimation(alphaAnimation);
+            btn_speak.setAnimation(alphaAnimation);
 
-                String text = mInput.getText().toString();
+            String text = mInput.getText().toString();
 
-                scrollText(text);
-                Message msg = Message.obtain();
-                msg.what = MSG_RECOGNIZE_START;
+            scrollText(text);
+            Message msg = Message.obtain();
+            msg.what = MSG_RECOGNIZE_START;
 
-                mHandler.sendMessage(msg);
+            mHandler.sendMessage(msg);
 
-            }
         });
 
 
-        Button m_btnBle = findViewById(R.id.btn_bleMode);
+        /*Button m_btnBle = findViewById(R.id.btn_bleMode);
         Button m_btnAccessory = findViewById(R.id.btn_accessoryMode);
         m_btnAccessory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -266,7 +246,7 @@ public class RobotFace extends Activity implements View.OnClickListener {
                 Intent intent = new Intent(RobotFace.this, BlueToothPage.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     private void SwitchListener() {

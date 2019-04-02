@@ -1,10 +1,12 @@
-package com.cyandr.robot;
+package com.cyandr.robot.VoiceSolver;
 
 import android.content.Context;
 import com.baidu.speech.EventListener;
 import com.baidu.speech.EventManager;
 import com.baidu.speech.EventManagerFactory;
 import com.baidu.speech.asr.SpeechConstant;
+
+import com.cyandr.robot.RobotApp;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -101,13 +103,13 @@ public class BDASR {
 
     }
 
-    void stop() {
+    public void stop() {
 
         eventManager.send(SpeechConstant.ASR_STOP, null, null, 0, 0); //
 
     }
 
-    void cancel() {
+    public void cancel() {
         eventManager.send(SpeechConstant.ASR_CANCEL, null, null, 0, 0);
 
     }
@@ -128,7 +130,7 @@ public class BDASR {
         eventManager.send(SpeechConstant.ASR_KWS_UNLOAD_ENGINE, null, null, 0, 0); //
     }
 
-    void init(Context context) {
+    public void init(Context context) {
         myapp = (RobotApp) context.getApplicationContext();
 
         eventManager = EventManagerFactory.create(context, "asr");
@@ -144,7 +146,7 @@ public class BDASR {
 
     }
 
-    void destroy() {
+    public void destroy() {
 
         eventManager.send(SpeechConstant.ASR_STOP, "{}", null, 0, 0);
         if (enableOffline) {

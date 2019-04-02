@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
+import static com.cyandr.robot.Constant.*;
 import static com.cyandr.robot.RobotFace.*;
 
 /**

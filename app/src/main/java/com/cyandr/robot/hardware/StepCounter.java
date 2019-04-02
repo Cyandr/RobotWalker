@@ -1,4 +1,4 @@
-package com.cyandr.robot;
+package com.cyandr.robot.hardware;
 
 /**
  * Created by cyandr on 2016/6/12 0012.
@@ -12,6 +12,7 @@ import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import com.cyandr.robot.RobotApp;
 
 /**
  * 这是一个实现了信号监听的记步的类

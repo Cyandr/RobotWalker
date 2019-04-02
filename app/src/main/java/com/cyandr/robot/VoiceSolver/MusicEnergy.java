@@ -1,4 +1,4 @@
-package com.cyandr.robot;
+package com.cyandr.robot.VoiceSolver;
 
 import android.content.Context;
 import android.graphics.*;

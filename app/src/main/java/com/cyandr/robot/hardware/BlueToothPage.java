@@ -1,6 +1,6 @@
 
 
-package com.cyandr.robot;
+package com.cyandr.robot.hardware;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.*;
+import com.cyandr.robot.*;
 
 import java.util.ArrayList;
 import java.util.List;

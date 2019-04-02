@@ -1,4 +1,4 @@
-package com.cyandr.robot;
+package com.cyandr.robot.hardware;
 
 import android.Manifest;
 import android.app.Activity;
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.cyandr.robot.R;
+import com.cyandr.robot.RobotFace;
 
 
 public class MyActivity extends Activity {

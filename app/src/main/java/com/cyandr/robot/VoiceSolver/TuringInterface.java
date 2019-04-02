@@ -1,5 +1,7 @@
-package com.cyandr.robot;
+package com.cyandr.robot.VoiceSolver;
 
+
+import com.cyandr.robot.HttpRequestListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -10,7 +12,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 
-class TuringInterface {
+public class TuringInterface {
     private HttpRequestListener httpRequestListener;
 
     private String setString(String str) {
@@ -27,7 +29,7 @@ class TuringInterface {
     //key是你自己注册得到的，当然你直接用我的也行
 
 
-    void getStr(final String string) {
+    public void getStr(final String string) {
 
         final String[] re = new String[1];
         final String data = setString(string);
