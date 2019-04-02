@@ -1,7 +1,7 @@
 package com.cyandr.robot;
 
 public class DataTransfer {
-    private byte DataBuffer[];
+    private byte[] DataBuffer;
     private int ReadPos = 0;
     private int WritePos = 0;
     private int BufferLen = 0;

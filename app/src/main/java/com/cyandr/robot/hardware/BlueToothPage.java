@@ -527,9 +527,9 @@ public class BlueToothPage extends Activity implements OnClickListener {
                     break;
                 case LGPSMap.POSITION_CONFIRMED:
                     LGPSolver.DeskPoint point = (LGPSolver.DeskPoint) msg.obj;
-                    textOut("x方向：" + String.valueOf(point.posX));
-                    textOut("y方向：" + String.valueOf(point.posY));
-                    textOut("力大小：" + String.valueOf(point.force));
+                    textOut("x方向：" + point.posX);
+                    textOut("y方向：" + point.posY);
+                    textOut("力大小：" + point.force);
                     break;
                 default:
                     super.handleMessage(msg);

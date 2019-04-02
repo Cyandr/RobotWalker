@@ -212,6 +212,8 @@ public class RobotFace extends Activity implements View.OnClickListener {
 
     private void InitUI() {
         final Button btn_speak = findViewById(R.id.btn_speak);
+        Button button=findViewById(R.id.btn_fusike);
+        button.setOnClickListener(this);
         btn_speak.setText("----");
         btn_speak.setOnClickListener(v -> {
             AlphaAnimation alphaAnimation = new AlphaAnimation(.5f, 1.0f);
@@ -247,6 +249,7 @@ public class RobotFace extends Activity implements View.OnClickListener {
                 startActivity(intent);
             }
         });*/
+
     }
 
     private void SwitchListener() {
@@ -366,7 +369,7 @@ public class RobotFace extends Activity implements View.OnClickListener {
             toApplyList.add(Manifest.permission.BLUETOOTH_ADMIN);
             // 进入到这里代表没有权限.
         }
-        String tmpList[] = new String[toApplyList.size()];
+        String[] tmpList = new String[toApplyList.size()];
         if (!toApplyList.isEmpty()) {
             requestPermissions(toApplyList.toArray(tmpList), 123);
         }

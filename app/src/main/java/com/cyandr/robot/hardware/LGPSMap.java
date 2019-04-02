@@ -110,7 +110,7 @@ public class LGPSMap extends SurfaceView implements Callback {
     }
 
     private void transformPoint(Matrix matrix, Point point) {
-        float mat[] = new float[9];
+        float[] mat = new float[9];
         matrix.getValues(mat);
         point.x = (int) (point.x * mat[0] + point.y * mat[1] + mat[2]);
         point.y = (int) (point.x * mat[3] + point.y * mat[4] + mat[5]);

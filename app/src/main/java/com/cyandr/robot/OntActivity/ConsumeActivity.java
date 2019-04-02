@@ -45,7 +45,7 @@ public class ConsumeActivity extends OntActivity {
 
     }
 
-    HashMap<String, ObjectProperty> RELS = new HashMap<>();
+  HashMap<String, ObjectProperty> RELS = new HashMap<>();
 
     void initRels(OntModel model) {
 
@@ -126,9 +126,9 @@ public class ConsumeActivity extends OntActivity {
 
                 }
 
-             /*   String namespace=VCARD.EMAIL.toString();
-                System.out.println(model1.getProperty(namespace,email));
-                System.out.println(email);*/
+//                String namespace=VCARD.EMAIL.toString();
+//                System.out.println(model1.getProperty(namespace,email));
+//                System.out.println(email);
             };
             conn.put(model);
             conn.queryResultSet(query, resultSetConsumer);
