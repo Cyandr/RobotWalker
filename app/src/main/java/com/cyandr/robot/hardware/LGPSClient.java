@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 public class LGPSClient implements Runnable {
 
@@ -48,11 +49,11 @@ public class LGPSClient implements Runnable {
 
             String strsend = "REQUEST";
 
-            m_os.write(strsend.getBytes("utf-8"));
+            m_os.write(strsend.getBytes(StandardCharsets.UTF_8));
 
             m_os.flush();
             String content = null;
-            m_bufReader = new BufferedReader(new InputStreamReader(m_socket.getInputStream(), "utf-8"));
+            m_bufReader = new BufferedReader(new InputStreamReader(m_socket.getInputStream(), StandardCharsets.UTF_8));
 
             while (true) {
                 content = m_bufReader.readLine();

@@ -28,27 +28,27 @@ public class StepCounter implements SensorEventListener {
     private static long end = 0;
     private static long start = 0;
     float acc, preacc;
-    float Mag[] = new float[3];
+    float[] Mag = new float[3];
     long timesta = 0;
     float PRETIME = 0;
     boolean ISMOVING;
     int acci = 0;
     int local = 0;
     private RobotApp myapp;
-    private float mLastValues[] = new float[3 * 2];
-    private float mScale[] = new float[2];
+    private float[] mLastValues = new float[3 * 2];
+    private float[] mScale = new float[2];
     private float mYOffset;
     /**
      * 最后加速度方向
      */
-    private float mLastDirections[] = new float[3 * 2];
-    private float mLastExtremes[][] = {new float[3 * 2], new float[3 * 2]};
-    private float mLastDiff[] = new float[3 * 2];
+    private float[] mLastDirections = new float[3 * 2];
+    private float[][] mLastExtremes = {new float[3 * 2], new float[3 * 2]};
+    private float[] mLastDiff = new float[3 * 2];
     private int mLastMatch = -1;
     private Handler handler;
     private Sensor AccSensor;
     private Sensor MagSensor;
-    private float Acc[] = new float[3];
+    private float[] Acc = new float[3];
     private float PreAngle;
     private int[] Celdara;
 
