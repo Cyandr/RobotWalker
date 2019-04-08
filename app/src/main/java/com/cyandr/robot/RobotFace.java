@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.baidu.tts.client.SpeechSynthesizer;
 import com.cyandr.robot.MemoryWorld.*;
 import com.cyandr.robot.OntActivity.ConsumeActivity;
+import com.cyandr.robot.OntActivity.Main;
 import com.cyandr.robot.VoiceSolver.BDASR;
 import com.cyandr.robot.VoiceSolver.JcSegInterface;
 import com.cyandr.robot.VoiceSolver.SpeechSpeaker;
@@ -328,7 +329,7 @@ public class RobotFace extends Activity implements View.OnClickListener {
 
     private void initPermission() {
 
-        ArrayList<String> toApplyList = new ArrayList<String>();
+        ArrayList<String> toApplyList = new ArrayList<>();
 
         if (PackageManager.PERMISSION_GRANTED != checkSelfPermission(Manifest.permission.RECORD_AUDIO)) {
             toApplyList.add(Manifest.permission.RECORD_AUDIO);
@@ -394,8 +395,6 @@ public class RobotFace extends Activity implements View.OnClickListener {
           String str=  jcSegInterface.getStr(cmd);
           scrollText(str);
         }
-
-
     }
 
     @Override
@@ -404,11 +403,11 @@ public class RobotFace extends Activity implements View.OnClickListener {
         {
             case R.id.btn_fusike:
             {
-                People people=new People();
+               // People people=new People();
 
-                ConsumeActivity activity=new ConsumeActivity(new People(),new Movement(),new Currency(),new Location(),new Time(),new MemoryObject());
-
-                activity.generateRdfModel();
+               // ConsumeActivity activity=new ConsumeActivity(new People(),new Movement(),new Currency(),new Location(),new Time(),new MemoryObject());
+                Main.main(null);
+               // activity.generateRdfModel();
             }
                 break;
 
@@ -465,8 +464,6 @@ public class RobotFace extends Activity implements View.OnClickListener {
                     break;
 
             }
-
-
         }
     }
 
